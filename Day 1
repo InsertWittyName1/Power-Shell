@@ -1,1 +1,54 @@
+xfreerdp /u:student /v:10.50.38.204 /dynamic-resolution +glyph-cache +clipboard  Use to logon to Windows Machine.
+CMDlets, they all start with a verb, and end in with a noun.
 
+get-command                                                     Gets all commands for Powershell
+Get-Verb                                                        Gets all verbs used in commands
+get-command -verb get                                           Gets all commands that have get as the verb
+get-command -noun service                                       Gets all commands where the noun is service
+get-service                                                     Gets all services and displays them as running or stopped
+get-eventlog -LogName Security                                  Gets all event logs in the security section of logs
+get-help (command)                                              Gets info on entered command. Microsoft Documentation can be useful. System.string expects strings, int expects numbers
+Update-Help -Force -ErrorAction SilentlyContinue                Command to update the help page, eliminate errors from appearing, and do so silently, in the background
+Get-Help Get-Process -Full                                      Gets the full list of info for command
+Get-Help "log"                                                  Gets options for anything related to logs
+get-help -examples get-process                                  Gets examples on how to run a command
+get-help about_*                                                Gets all about options on what you can use in PowerShell (scripts, wmi, variables)
+get-help get-process -showwindow                                Gets help on command and prints it to a window
+get-help get-process -online                                    Gets help on command and finds it online
+get-childitem -path c:\windows -filter *.exe -recurse -name     Gets all .exe files under the c:\windows directory, recursively, and prints them
+Get-alias -definition get-childitem                             Gets all aliases for a command (get-childitem)
+set-alias edit notepad.exe                                      Creates the alias of edit, that will run notepad.exe
+remove-item alias:edit                                          Removes the alias edit
+get-host                                                        Gets host information, PowerShell version, etc....
+(Get-Process).ProcessName                                       Gets only the Names of all processes, using properties
+(get-process notepad).Kill()                                    Kills the process, notepad, using properties.
+get-process | get-member -membertype properties                 Gets processes, pipes it to get-member, which tells yout the methods and properties of entered command, and membertype selects
+                                                                whether you'd get properties, methods, events, etc....
+get-service | format-table name, status                         Takes the service list, and formats it to display name and status
+
+
+
+
+Windows commands run as Windows commands, not the PowerShell variants.
+PowerShell is space delimited, so use quotes to avoid this problem. 
+O'Reilly Books, has info on programming, free resource for military members.
+Positional parameters may be optional, or mandatory. Some are infered, and not needed. [Optional Parameter] <Mandatory Parameter> Can be seen in Get-Help
+PowerShell will tell you when it needs a specific parameter.
+
+Aliases: Setting a seperate name for a command. Not persistent, only available in that session.
+
+PowerShell see's items through properties and method. Descriptions about the item, and what the item can do.
+
+Functions:
+write-output "" Gives the string as output in the function, allowing for use in pipes
+write-host "" Gives the strings not as output, doesn't allow for use in pipes
+
+Variables:
+There are system variables automatically set, which can be viewed with get-variable. Call variables using $.
+$a = 10 makes the variable a hold 10, custom variables only exist in that session, get-variable doesn't need the $ when referencing a variable, as it's infered.
+$a , $b , $c = 5 , 6 , 4 Sets variables as shown, allows for multiple to be done at once.
+test-path variable:a checks to see if variable exists. $a prints the contents of a, don't need get-variable
+remove-variable a, removes a. del variable:b will remove b.
+
+Single Quotes: Print literally, don't consider variables
+Double Quotes: Don't print literally, do consider variables
