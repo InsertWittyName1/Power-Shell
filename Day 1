@@ -27,9 +27,6 @@ get-process | get-member -membertype properties                 Gets processes, 
 get-service | format-table name, status                         Takes the service list, and formats it to display name and status
 
 
-
-
-Windows commands run as Windows commands, not the PowerShell variants.
 PowerShell is space delimited, so use quotes to avoid this problem. 
 O'Reilly Books, has info on programming, free resource for military members.
 Positional parameters may be optional, or mandatory. Some are infered, and not needed. [Optional Parameter] <Mandatory Parameter> Can be seen in Get-Help
@@ -52,3 +49,88 @@ remove-variable a, removes a. del variable:b will remove b.
 
 Single Quotes: Print literally, don't consider variables
 Double Quotes: Don't print literally, do consider variables
+
+
+Exercises:
+
+
+    Ensure that you have the latest copy of help by updating your help system: Update-Help -Force -ErrorAction SilentlyContinue
+
+    Which cmdlets deal with the viewing/manipulating of processes: get-process with methods
+
+    Display a list of services installed on your local computer: get-service
+
+    What cmdlets are used to write or output objects or text to the screen: write-output, or write-host
+
+    What cmdlets can be used to create, modify, list, and delete variables: $a = 10, remove-variable a
+
+    What cmdlet can be used, other than Get-Help, to find and list other cmdlets: get-command
+
+    Find the cmdlet that is used to prompt the user for input: read-host
+
+
+
+    Display a list of running processes: get-process
+
+    Display a list of all running processes that start with the letter "s": get-process -name s*
+
+    Find the cmdlet and its purpose for the following aliases:
+
+        gal: get-alias
+
+        dir: get-childitem
+
+        echo: write-output
+
+        ?: Where-object
+
+        %: foreach-object
+
+        ft: format-table
+
+    Display a list of Windows Firewall Rules: show-netfirewallrule
+
+    Create a new alias called "gh" for the cmdlet "Get-Help": set-alias gh get-help
+
+
+
+    Create a variable called "var1" that holds a random number between 25-50: $var1 = get-random -maximum 50 -minimum 25
+
+    Create a variable called "var2" that holds a random number between 1-10: $var2 = get-random -maximum 10 -minimum 1
+
+    Create a variable called "sum" that holds the sum of var1 and var2: $sum = $a + $b
+
+    Create a variable called "sub" that holds the difference of var1 and var2: $sub = $a - $b
+
+    Create a variable called "prod" that holds the product of var1 and var2: $prod = $a * $b
+
+    Create a variable called "quo" that holds the quotient of var1 and var2: $quo = $a / $b
+
+    Replace the variables in text with their values in the following format:
+
+        "var1" + "var2" = "sum"
+
+    Replace the variables in text with their values in the following format:
+
+        "var1" - "var2" = "sub"
+
+    Replace the variables in text with their values in the following format:
+
+        "var1" * "var2" = "prod"
+
+    Replace the variables in text with their values in the following format:
+
+        "var1" / "var2" = "quo"
+
+
+
+    Display the start time of the earliest and latest running processes
+
+    Identify a cmdlet that returns the current date and time then using this cmdlet and Select-object, display only the current day of the week
+
+    Identify a cmdlet that displays a list of installed hotfixes.
+
+    Extend the expression to sort the list by install date, and display only the install date and hotfix ID.
+
+    Extend the expression further, but this time sort by description, include description, hotfix ID, and install Date.
+
