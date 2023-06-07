@@ -62,7 +62,7 @@ Exercises:
 
     What cmdlets are used to write or output objects or text to the screen: write-output, or write-host
 
-    What cmdlets can be used to create, modify, list, and delete variables: $a = 10, remove-variable a
+    What cmdlets can be used to create, modify, list, and delete variables: get, new, set, remove-variable a
 
     What cmdlet can be used, other than Get-Help, to find and list other cmdlets: get-command
 
@@ -90,13 +90,13 @@ Exercises:
 
     Display a list of Windows Firewall Rules: show-netfirewallrule
 
-    Create a new alias called "gh" for the cmdlet "Get-Help": set-alias gh get-help
+    Create a new alias called "gh" for the cmdlet "Get-Help": set-alias gh get-help    remove-item alias:gh
 
 
 
     Create a variable called "var1" that holds a random number between 25-50: $var1 = get-random -maximum 50 -minimum 25
 
-    Create a variable called "var2" that holds a random number between 1-10: $var2 = get-random -maximum 10 -minimum 1
+    Create a variable called "var2" that holds a random number between 1-10: $var2 = get-random -maximum 10 -minimum 1 Invoke-Expression  $var2 would keep randomizing the number
 
     Create a variable called "sum" that holds the sum of var1 and var2: $sum = $a + $b
 
