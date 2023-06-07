@@ -108,29 +108,29 @@ Exercises:
 
     Replace the variables in text with their values in the following format:
 
-        "var1" + "var2" = "sum"
+        "38" + "1" = "39"
 
     Replace the variables in text with their values in the following format:
 
-        "var1" - "var2" = "sub"
+        "38" - "1" = "37"
 
     Replace the variables in text with their values in the following format:
 
-        "var1" * "var2" = "prod"
+        "38" * "1" = "38"
 
     Replace the variables in text with their values in the following format:
 
-        "var1" / "var2" = "quo"
+        "38" / "1" = "38"
 
 
 
-    Display the start time of the earliest and latest running processes
+    Display the start time of the earliest and latest running processes: get-process | select name, starttime | sort starttime | select -skip 1 -first 1 -last 1
 
-    Identify a cmdlet that returns the current date and time then using this cmdlet and Select-object, display only the current day of the week
+    Identify a cmdlet that returns the current date and time then using this cmdlet and Select-object, display only the current day of the week: (get-date).dayofweek
 
-    Identify a cmdlet that displays a list of installed hotfixes.
+    Identify a cmdlet that displays a list of installed hotfixes: get-hotfix
 
-    Extend the expression to sort the list by install date, and display only the install date and hotfix ID.
+    Extend the expression to sort the list by install date, and display only the install date and hotfix ID: get-hotfix | sort-object installedon | select hotfixid, installedon
 
-    Extend the expression further, but this time sort by description, include description, hotfix ID, and install Date.
+    Extend the expression further, but this time sort by description, include description, hotfix ID, and install Date: get-hotfix | sort-object description | select description, hotfixid, installedon
 
