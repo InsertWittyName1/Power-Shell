@@ -3,4 +3,4 @@
 Arrays:
 Saving output like get-process to a variable will be seen as an array, so it can be used to display specific elements. [0] first element [-1] last element in list.
 -is [array] will test an object to see if it is an array array.count is the number of elements, .length is true, but useful for others. array@() creates an empty array, also allows you
-to not deliminate, and go line by line. You can effect multiple arrays at one time.
+to not deliminate, and go line by line. You can effect multiple arrays at one time. 
