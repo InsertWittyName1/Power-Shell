@@ -1,6 +1,98 @@
-(vv).getType()                     Tells you what the output type is
+$(vv).getType()                     Tells you what the output type is
 
 Arrays:
 Saving output like get-process to a variable will be seen as an array, so it can be used to display specific elements. [0] first element [-1] last element in list.
 -is [array] will test an object to see if it is an array array.count is the number of elements, .length is true, but useful for others. array@() creates an empty array, also allows you
 to not deliminate, and go line by line. You can effect multiple arrays at one time. 
+Jagged Array: a nested array, $jag = "joe", "jim", "jan", (1, ('apple', 'pear'), 3), "jay"
+$jag[3][1][1] prints pear, you must use the correct nuber of indexes to get the right array.
+
+$a += @(4,5,6) is used to append 4,5,6 to the array $a $a += , (7,8,9) will append the items as a nested array, due to the comma.
+
+Multiplying strings gets you that string printed out that many times. Same can be done for an array, @( boom ) * 20
+You can put multiple lines of nested array by:
+$array = @(
+ (3.4, 5.2, "gg"),
+ (7.5, 8,9, "lmao"),
+)
+Search the last element in all arrays in $array for "lmao", then prints the nested array holding it: 
+foreach ($line in $array) {
+  if ($line[-1] -eq "lmao"){
+    write-output $line
+  }
+}
+
+Script Block:
+$block = { get-service | format-table name, status }
+& $block
+$a = 1
+$b = { 1 + 1 }
+$a += &$b
+$a now equals 3
+
+Sorting and Grouping:
+gci sorts alphabetically bby default.
+get-childitem | sort-object -descending
+get-childitem | sort-object -property length -descending
+
+Seperates output of services by their status, seperates runnning and stopped, very nice.
+get-service | group-object status 
+
+Pipeline var, using length of each file to group them, based on those that are less than 1kb, and those that are larger.
+get-childitem | group-object {$_.length -lt 1kb }
+
+1, 3, 5, 8, 2, 10 | sort-object, will sort numerically
+'1', '3', '5', '8', '2', '10' | sort-object, will sort by ASCII, double quotes does the same.
+
+1..10 | sort-object -property { get-random }, wll sort the list of ints from 1-10 randomly, changes results everytime it's ran
+
+Select: Only grabs what you tell it to
+
+Get first 10 processes from the process list
+get-process | Select-object -First 10
+get-process | select name, id, prints process name and id for all processes in the list
+get-process | select name, id, description, prints the same with description, which isn't normally shown
+-expandproperty description, gives the fully expanded property.
+
+where-object filtering based on query
+get-service | where-object {$_.status -eq 'running'}, gets all running services
+get-childitem *.txt | where-object {$_.length -lt 100}, gets all .txt files in pwd with length less than 100
+get-process | where {$_.name -like "*powershell*"} | format-table name, description, Gets all processes that contain powershell, and printing their name and description. 
+-eq wouldn't return anything, as it needs a literal exact match, -like can use the wildcards.
+
+1,2,3,1,2,3,1,2,3,1,2,3 | sort | get-unique, gives us only the unique numbers, make sure to sort, because unique won't see them otherwise.
+
+gci | measure-object length, gets number of items in pwd, with a length
+(get-childitem).count, gets the number of items in pwd
+get-childitem | measure length -average -maximum -minimum -sum, same as earlier, but with extra info included.
+
+compare-object $before $after length, name, this will give us the name and length of differences between $before and $after.
+ 
+$truck = new-object object, creates $truck as an object
+add-member -membertype noteproperty -name Color -value Black -inputobject $truck, adds property of "Color" and make it equal "Black", and add it to $truck
+add-member -me noteproperty -in $truck -na Make -va Ford, shorthand to add property, adding "Make" and assigning it "Ford"
+$truck | add-member noteproperty -name Model -value F150, pipeline version to add property
+
+add-member -membertype scriptmethod -inputobject $truck -name Drive -value { "going for a trip" }, creates a method in the object
+$truck | add-member scriptmethod -name park -value { "finding a spot" }
+$truck | add-member scriptmethod stop { "coming to a stop" }
+$truck.Park() will call on that method
+
+Use PSCustomObject to make a new object:
+$Soldier = [PSCustomObject]@{
+"Firstname" = "Joe"
+"Lastname" = "Snuffy"
+} 
+
+
+EXERCISES
+
+
+    Create an array containing a range with a random starting and stopping point. The starting point will be a random number from -10 through 0. The ending point will be a random number 
+    from 1 through 20.
+
+	For example, if the first random number is -3, and the second random number is 2, your array will be -3, -2, -1, 0, 1, 2
+
+    Create a variable that contains the contents of the array in reverse
+
+	Using the above example, your reversed array will be 2, 1, 0, -1, -2, -3 
