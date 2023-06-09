@@ -1,1 +1,131 @@
+PS Remoting: It exists, very cool
 
+String Manipulation:
+"text `"Quotation marks`""
+'text "quotation marks"'
+
+$text1 = "One Terabyte is $(1TB / 1GB) Gigabytes"
+"here is another`nline of text"
+`n is new line.
+text = @"
+Here is some text with `"quotes`".
+1TB equals $(1TB / 1GB) GB.
+Variables are resolved
+"$PWD" is your current path
+"@
+
+Format Strings:
+"{0:n3}" -f 123.45678
+"{0:d5}" -f 1
+get-service | select-object -First 10 | foreach{"The Service {0} is call '{1}': {2}" -f $_.Name $_.DisplayName $_.Status}
+
+Replace:
+"Hello John" -replace "John", "world"
+
+'Server1,Server2,Server3' -replace '[,]',';'
+
+'[      Jon       Bon         Doe         ]' -replace '\s+', ' ' Replaces large agps of whitespace, with only one space
+
+(qprocess) -replace '\s{2,}', ', ' | select -First 10     Replace output with 2 or more spaces with a comma space, and only show the first 10 lines. 
+
+-join joins and -split splits
+
+if you use -match, $matches[0] gives you the most recent match.
+
+"10.0.0.2" -as [ipaddress] -as [bool] will return True if given a proper ip, and False, if it isn't.
+
+Functions:
+Parameters default to strings, so typecast.[orde
+function test-it {
+  'Hello world!'
+}
+
+function Add-Twonums
+{
+
+Param ([int]$a,
+       [int]$b
+    
+   $a + $b
+}
+
+[parameter(Mandatory( , HelpMessage='Enter a name please')] forces the user to give a parameter, HelpMessage gives them a message to the screen.
+
+[Math]:: Pow(10,2) can be used to find a number by a certain power, this would give us 10 squared.
+\
+ADVANCED FUNCTIONS:
+Have parameters, Begin. Process, End. Three parts
+
+
+
+
+EXERCISES
+
+
+    Write a function that returns the Ordinal date of the current date.
+
+function Get-OrdinalDate {
+    Get-Date -UFormat "%B %eth %Y"
+  }
+
+    Create a function that takes a number(n) as an argument and returns the square(n^2) of the number.
+
+fuction Get-SquareNum {
+Param ([int]$a)
+    [Math]:: Pow($a,2)
+}
+    Create a function that takes three (3) arguments and returns the product of the arguments.
+function Get-Product {
+Param ([int]$a, [int]$b, [int]$c)
+    $a * $b * $c
+}
+
+
+
+    Create a function that takes two(2) integer values, $a and $b, that are the lengths of two(2) legs of a right triangle and returns the length of the hypotenuse.
+function Pythag-thee {
+Param ([int]$a, [int]$b)
+    $c =([Math]:: Pow($a,2) + [Math]:: Pow($b,2))
+    [Math]:: sqrt($c)
+}
+    Create a function that takes two(2) values, $a and $b, as two(2) angles in degrees of a triangle. Return the value of the missing angle.
+function Missed-Opp {
+Param ([int]$a, [int]$b)
+    $c = (180 - ($a + $b))
+    $c
+}
+    Create a function that takes the following as mandatory parameters:
+
+        First Name
+
+        Last Name
+
+        Age
+
+        Weight in pounds(lbs)
+
+    and returns the information in a hash table using the keys: first, last, age, and weight with the weight value converted to kilograms(kg) rounded to the nearest whole number
+
+function Pers-Info { 
+Param (
+    [parameter(Mandatory, HelpMessage='First Name:')]$First,
+    [parameter(Mandatory, HelpMessage='Last Name:')]$Last,
+    [parameter(Mandatory, HelpMessage='Age:')]$Age,
+    [parameter(Mandatory, HelpMessage='Weight in lbs:')]$lbs)
+    
+    $Kgs = $lbs / 2.2
+    
+    $info = [ordered]@{First = "$First"; Last = "$Last"; Age = "$Age"; Weight = "$Kgs"}
+    $info
+}
+
+    Create a function that extracts your current IP, Subnet and Gateway and outputs them in the following format:
+
+
+
+
+    Create a function that extracts all the URLs found in the file "dns.txt" and outputs URLs, the amount of times the URL is found in the file and the total amount of URLs found.
+
+
+
+ 
