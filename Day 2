@@ -31,7 +31,7 @@ $a += &$b
 $a now equals 3
 
 Sorting and Grouping:
-gci sorts alphabetically bby default.
+gci sorts alphabetically bby default.Mod
 get-childitem | sort-object -descending
 get-childitem | sort-object -property length -descending
 
@@ -84,7 +84,60 @@ $Soldier = [PSCustomObject]@{
 "Lastname" = "Snuffy"
 } 
 
+new-psdrive -name HKU -psprovider registry -root HKEY_USERS
 
+new-psdrive -name Z -psprovider filesystem -root \\live.sysinternals.com\tools
+start-service -name webclient
+
+-eq equals, -ne not equals, -lt less than, -gt greater than, -ge greater than or equal to, -le greater than or equal to, -replace replaces strings, -contains for something in a thing.
+
+Switch: 
+$fruit = "c"
+switch($fruit){
+a ("apple")
+b ("banana")
+c ("cranberry")
+}
+This will print cranberry
+
+$_.ToUpper() will make the variable uppercase
+
+-Recurse for recursive stuff.
+
+$num++ to increment
+
+Do loop:
+do {
+	$num
+	$num++
+}while($num -lt 3)
+}until($num -gt 3)
+
+      assignment   Condition  change  code     
+for($num -eq 1; $num -le 3; $num++){$num} For Loop
+
+File IO stuff
+set-content -path .\example.txt -value "A String": Write to file
+get-content .\example.txt: Read file
+cat .\example.txt: List file contents
+"More Strings" > .\example.txt: Write to file
+"Even More Strings" >> .\example.txt: Append to file
+add-content .\example.txt -Value "Even Morer Strings" 
+
+Scripts:
+'"YoBoy"' > YoBoy-script.ps1  .\YoBoy-script.ps1 to run it.
+
+@'
+"Odoyle Rules!"
+"morerererereer"
+get-service
+get-childitem
+'@ > anotherBoy-script.ps1   Adds there lines to the script, and runs any commands when called. Hear strings.
+
+Hash Tables:
+ $list = @{First = "John"; Last = "Doe"; Mid = "Bon"; Age = 35}
+ $list.Last
+ $list.remove(ele)@
 EXERCISES
 
 
@@ -96,3 +149,85 @@ EXERCISES
     Create a variable that contains the contents of the array in reverse
 
 	Using the above example, your reversed array will be 2, 1, 0, -1, -2, -3 
+	
+	ANSWER: $a = get-random -min -10 -max 0
+		$b = get-random -min 1 -max -20
+		$arr = $a..$b
+
+
+    Create a custom object that contains information about the host system using the following:
+
+        Win32_ComputerSystem
+
+        Win32_BIOS
+
+        Win32_OperatingSystem
+
+        Win32_LogicalDisk
+
+    Use the cmdlet Get-WmiObject to obtain the needed information
+    
+    EXAMPLE
+ComputerName    : DESKTOP-5KJDVS2
+OperatingSystem : Microsoft Windows 10 Pro
+Version         : 10.0.17134
+Manufacturer    : Dell Inc.
+Disks           : {\\DESKTOP-                          5KJDVS2\root\cimv2:Win32_LogicalDisk.DeviceID="C:",
+                  \\DESKTOP-5KJDVS2\root\cimv2:Win32_LogicalDisk.DeviceID="D:"}
+	
+
+$Comps = [PSCustomObject]@{
+"ComputerName" = "WIN-OPS"
+"OperatingSystem" = "Ubuntu"
+"Version" = "10.0.19045"
+"Manufacturer" = "OpenStack Foundation"
+"Disks" = "C:	D:"
+}
+$Comps
+
+
+
+Create two empty hash tables with the following names:
+
+    employee1
+
+    employee2
+
+Using the following table of key-value pairs, apply each key-value to the empty hash tables.
+Table 1. keys and values
+
+First 	Last 	ID 	Job
+
+Mary  Hopper 001 Software Developer
+
+John Williams 002 Web Developer
+	
+
+The keys on the first row of the table while the values are on the first column of the table
+
+Now add a new key called Username which holds a contraction of the employee’s first initial then last name then ID. (i.e. mhopper001).
+
+Mary got promoted to "Software Lead" so the job key for Mary needs to be changed to "Software Lead"
+
+Create a new hash table called "employee3" that contains the following values with the respective keys.
+Table 2. employee3 
+
+First 	Last 	ID 	Job
+
+Alex Moran 003 Software Developer
+
+Add a new key called "Status" that holds the values:
+Table 3. Status
+
+Mary 	John 	Alex
+
+Management Intermediate Entry Level
+	
+
+Make sure you use both dot notation and square brackets to manipulate your hash tables.
+
+
+
+
+
+
