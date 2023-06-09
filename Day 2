@@ -189,9 +189,9 @@ $Comps
 
 Create two empty hash tables with the following names:
 
-    employee1
+    employee1.First = "Mary"
 
-    employee2
+    employee2["First"] = "John"
 
 Using the following table of key-value pairs, apply each key-value to the empty hash tables.
 Table 1. keys and values
@@ -226,8 +226,45 @@ Management Intermediate Entry Level
 
 Make sure you use both dot notation and square brackets to manipulate your hash tables.
 
+Putting other key values in a hash table:
+employee1.job[0] if entry is an array.
+$employee2.Add("Username", $employee2.First[0]+$employee2.Last+$employee2.id) This makes the username automatically.
+
+ANSWERS:
+
+Comparison and Contrast:
+
+$patttern = '[A-Za-z]{2}\b{2,5}'
+$line1.$line2 | foreach-object {
+	if ($_ -match $pattern){
+		write-host $matches[0]" : $_"
+	}
+	else{
+		write-host "No matches found on : $_"
+	}
+}
+
+Looping and iteration:
+$procs | foreach-object { start-process $_ }
+$file = "$pwd\procs.txt"
+foreach($proc in $procs) {
+	get-process | where-object{$_.Name -like $proc} |
+	format-table -property id, name, starttime, totalprocessortime, virtualmemorysize, workingset64 }
+	
+foreach ($proc in $procs){
+	get-process | where-object{$_.Name -like $proc} | 
+	foreach-object{add-content $file $_.id} }
+	
+get-content .\procs.txt | foreach-object{stop-process -id $_}
 
 
+Arrays and Hashtables:
+
+
+
+or foreach ( $item in $procs) { start-process $item ; stop-process -id (ps $item).id -force}
+ 
+ 
 
 
 
