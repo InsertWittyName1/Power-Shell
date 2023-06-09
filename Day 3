@@ -127,5 +127,48 @@ Param (
     Create a function that extracts all the URLs found in the file "dns.txt" and outputs URLs, the amount of times the URL is found in the file and the total amount of URLs found.
 
 
+REVIEW:
+Return sum of given vars:
 
- 
+Return $var1+$var2+$var3+$var4
+
+Return the line that starts with string in $start:
+
+$content = get-content $file
+foreach ($item in $content) {
+    if ($item.startswith($start)) {
+        return $item
+    else
+        return $null
+    }
+}
+
+Return given $arr joined by a /:
+
+return $arr -join('/')
+        
+Return a list of running processes in descending order, by name.
+
+return get-process | sort -Property name -descending
+
+Search the rows in the array for the first instance that column index 0 equals $key, and return column index 9, of the same row.
+If $key not found, return -l
+foreach ($rows in $arr) {
+    if ($i[0] -eq $key) {
+        return $i[9]
+    }
+}
+return -l
+
+
+Provided on the Pipeline means it needs an advanced function, all it needs is the Process Block:
+
+Process {
+$L = $Cope + $Ratio
+} 
+
+
+
+ANYTHING WITH A DATE, USE -UFORMAT, AND GET THE OPTIONS.
+
+IF YOU HAVE AN INFINITE LOOP, IT'LL CRASH THE ISE FILE. OPEN TASKMANAGER AND KILL POWERSHELL.
