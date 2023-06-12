@@ -1,0 +1,27 @@
+
+Compare Files hash with last to see if it's been changed
+$a = get-filehash $filepath
+if ($a -match -lasthash) {
+  return $false
+}
+else {
+  return $true
+}
+
+Return True or false for validity of IP Address:
+return $addr -as [ipaddress] -as [bool]
+
+Get-command -Noun process, gets all commands with process as the noun
+
+use (get-content -path $filepath)[index] to search for specific line at line number.
+
+Use loop to ask for positive integer, until the user enters negative integer, and return largest number passed:
+$b = @()
+Do {
+  $b += $a
+  $a = [int](read-host "Positive integer")
+}
+Until ( $a -le -1)
+$c = ($b | sort -descending)
+return $c[0]
+
