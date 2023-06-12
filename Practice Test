@@ -25,3 +25,13 @@ Until ( $a -le -1)
 $c = ($b | sort -descending)
 return $c[0]
 
+Return sum of all elements provided on the pipeline
+Begin {
+  $b = 0
+}
+process {
+  $b += $_
+}
+End {
+  return $b
+}
